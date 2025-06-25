@@ -23,7 +23,9 @@
     th:nth-child(4),
     td:nth-child(4),
     th:nth-child(5),
-    td:nth-child(5) {
+    td:nth-child(5),
+    th:nth-child(6),
+    td:nth-child(6) {
       min-width: 250px;
     }
 
@@ -47,6 +49,7 @@
         <th>Week Days</th>
         <th>Etria</th>
         <th>Solutions</th>
+        <th>Minutes of eGP Meeting</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -62,7 +65,8 @@
       textarea.style.height = textarea.scrollHeight + "px"; // Adjust height to content
     }
 
-    function addRow(data = ["", "", "", "", ""]) {
+    // Updated: Add 1 extra empty cell for 'Minutes of eGP Meeting'
+    function addRow(data = ["", "", "", "", "", ""]) {
       const table = document.getElementById("wsrTable").getElementsByTagName("tbody")[0];
       const row = table.insertRow();
 
@@ -97,7 +101,8 @@
           });
           cell.appendChild(select);
 
-        } else if (index === 3 || index === 4) {
+        } else if (index === 3 || index === 4 || index === 5) {
+          // Etria, Solutions, Minutes columns (textarea)
           const textarea = document.createElement("textarea");
           textarea.value = val;
           textarea.oninput = function () {
@@ -107,7 +112,7 @@
           cell.appendChild(textarea);
 
         } else {
-          // Other inputs as text fields
+          // Week Days (text field)
           const input = document.createElement("input");
           input.type = "text";
           input.value = val;
